@@ -26,7 +26,7 @@ class ArrayTask {
                     sum += mas[i];
                 }
                 System.out.println("Сумма элементов массива равна " + sum);
-                System.out.println("Среднее арифметическое чисел массива равно " + sum / mas.length);
+                System.out.printf("Среднее арифметическое чисел массива равно %.2f",(double)sum / mas.length);
             }
         }
     }
