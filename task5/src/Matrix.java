@@ -6,12 +6,12 @@ import java.util.List;
  */
 public class Matrix {
     public static void main(String[] args) {
-        int[][] array  = {{1, 0, 3}, {4, -5, 6}, {-12, 8, 9}};
+        int[][] array = {{1, 0, 3}, {4, -5, 6}, {-12, 8, 9}};
         System.out.println("Элементы главной диагонали ");
         // 5.Распечатайте (выведите) элементы главной диагонали
-        for (int i = 0; i <array.length ; i++) {
-            for (int j = 0; j <array.length ; j++) {
-                if (i==j) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i == j) {
                     System.out.print("\t" + array[i][j]);
                 }
 
@@ -29,14 +29,14 @@ public class Matrix {
         System.out.println("\nэлемент матрицы должен быть больше суммы индексов i + j ");
         List<Integer> ints = new ArrayList<>();
         System.out.println(ints.toString());
-        for (int i = 0; i <array.length ; i++) {
-            for (int j = 0; j <array.length ; j++) {
-                if (i+j<array[i][j]) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i + j < array[i][j]) {
                     ints.add(array[i][j]);
                 }
 
             }
         }
         System.out.println(ints.toString());
-        }
     }
+}
