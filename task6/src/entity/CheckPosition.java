@@ -1,12 +1,12 @@
-package Entity;
+package entity;
 
 /**
  * Created by User on 06.04.2019.
  */
 public class CheckPosition {
-    protected String name;
-    protected double price;
-    protected int count;
+    private String name;
+    private double price;
+    private int count;
 
     public CheckPosition(String name, double price, int count) {
         this.name = name;
