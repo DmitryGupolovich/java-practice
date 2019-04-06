@@ -6,7 +6,11 @@ import java.util.List;
  */
 public class Matrix {
     public static void main(String[] args) {
-        int[][] array = {{1, 0, 3}, {4, -5, 6}, {-12, 8, 9}};
+        int[][] array = {   {1,0,3,7},
+                         {4,-5,6,7,7},
+                          {4,-12,8,9},
+                         {99,23,23,23}
+        };
         System.out.println("Элементы главной диагонали ");
         // 5.Распечатайте (выведите) элементы главной диагонали
         for (int i = 0; i < array.length; i++) {
@@ -38,5 +42,21 @@ public class Matrix {
             }
         }
         System.out.println(ints.toString());
+
+        System.out.println("Побочная диагональ через один цикл");
+        for (int i = 0; i < array.length; i++) {
+            if (i < array[i].length && array[i][array[i].length - i - 1]>i*2) {
+                System.out.println(array[i][array[i].length - i - 1]);
+            }
+        }
+
+        System.out.println("Главная диагональ через один цикл");
+        for (int i = 0; i < array.length; i++) {
+            if (i < array[i].length) {
+                System.out.println(array[i][i]);
+            }
+        }
+
+
     }
 }
