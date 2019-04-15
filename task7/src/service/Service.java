@@ -1,6 +1,7 @@
 package service;
 
 import myexception.ValueIsNotReadyException;
+import myexception.ValueIsNullException;
 
 /**
  * Created by User on 14.04.2019.
@@ -18,7 +19,23 @@ public class Service {
            return checkPositiveValue(Double.parseDouble(value));
 
         } catch (NumberFormatException ex){
-            throw new ValueIsNotReadyException("Illegal radius. Should be positive number.");
+            throw new ValueIsNotReadyException("Вы ввели не число!");
         }
+    }
+    public void checkNullvalue(String[] args) throws ValueIsNullException {
+
+            if (args[0]!=null){
+                switch (args[0]){
+                    case "-r":
+                        if (args.length==1 || args.length==2)
+                            throw new ValueIsNullException("Отсутствует значение для ввода прямоугольника!");
+                            break;
+                    case "-c":
+                        if (args[1]==null)
+                            throw new ValueIsNullException("Отсутствует значение для ввода!");
+                        break;
+
+                }
+            }
     }
 }
