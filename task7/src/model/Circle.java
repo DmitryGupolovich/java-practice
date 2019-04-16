@@ -23,9 +23,9 @@ public class Circle extends AbstractShape {
         return 2 * Math.PI * radius;
     }
 
-    @Override
-    public String toString() {
-        return "square= " + square() +".2f"+
-                ", perimeter=" + perimeter();
-    }
+//    @Override
+//    public String toString() {
+//        return "square= " + square() +".2f"+
+//                ", perimeter=" + perimeter();
+//    }
 }

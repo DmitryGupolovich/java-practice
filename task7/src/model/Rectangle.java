@@ -26,9 +26,9 @@ public class Rectangle extends AbstractShape {
         return (a+b)*2;
     }
 
-    @Override
-    public String toString() {
-        return "square=" + square() +
-                ", perimeter=" + perimeter();
-    }
+//    @Override
+//    public String toString() {
+//        return "square=" + square() +
+//                ", perimeter=" + perimeter();
+//    }
 }
