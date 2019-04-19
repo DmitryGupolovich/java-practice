@@ -1,16 +1,13 @@
 package model;
 
-import service.Service;
-
 /**
  * Created by User on 14.04.2019.
  */
 public class Circle extends AbstractShape {
     private final double radius;
-    private Service service;
-    public Circle(Service service, String radius) {
-        this.service=service;
-        this.radius = this.service.checkPositiveValue(radius);
+
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
     @Override
@@ -23,9 +20,4 @@ public class Circle extends AbstractShape {
         return 2 * Math.PI * radius;
     }
 
-//    @Override
-//    public String toString() {
-//        return "square= " + square() +".2f"+
-//                ", perimeter=" + perimeter();
-//    }
 }

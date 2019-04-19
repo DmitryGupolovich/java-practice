@@ -6,6 +6,7 @@ package model;
 public abstract class AbstractShape {
 
     public abstract double square();
+
     public abstract double perimeter();
 
     @Override
