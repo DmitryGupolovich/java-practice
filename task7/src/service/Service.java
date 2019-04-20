@@ -1,5 +1,6 @@
 package service;
 
+import help.Help;
 import myexception.ValueIsNotReadyException;
 import myexception.ValueIsNullException;
 
@@ -27,11 +28,11 @@ public class Service {
             switch (args[0]) {
                 case "-r":
                     if (args.length != 3)
-                        throw new ValueIsNullException("Отсутствует значение для ввода прямоугольника!");
+                        throw new ValueIsNullException(Help.getStrIsNullValue());
                     break;
                 case "-c":
                     if (args.length != 2)
-                        throw new ValueIsNullException("Отсутствует значение для ввода!");
+                        throw new ValueIsNullException(Help.getStrIsNullValue());
                     break;
 
             }

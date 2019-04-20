@@ -19,26 +19,31 @@ public class Main {
             System.exit(1);
         }
 
-        try {
-            AbstractShape abstractShape = null;
-            switch (args[0]) {
-                case "-r":
+        AbstractShape abstractShape = null;
+        switch (args[0]) {
+            case "-r":
+                try {
                     abstractShape = new Rectangle(service.checkPositiveValue(args[1]), service.checkPositiveValue(args[2]));
                     break;
-                case "-c":
+                } catch (ValueIsNotReadyException | ValueIsNullException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            case "-c":
+                try {
                     abstractShape = new Circle(service.checkPositiveValue(args[1]));
                     break;
-                case "-h":
-                    Help.getStrInfo();
-                    break;
-                default:
-                    System.out.println("Unknown option " + args[0] + "\n Use -h to get help.");
-            }
-            if (abstractShape != null) {
-                System.out.println(abstractShape.toString());
-            }
-        } catch (ValueIsNotReadyException | ValueIsNullException ex) {
-            System.out.println(ex.getMessage());
+                } catch (ValueIsNotReadyException | ValueIsNullException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            case "-h":
+                Help.getStrInfo();
+                break;
+            default:
+                System.out.println("Unknown option " + args[0] + "\n Use -h to get help.");
         }
+        if (abstractShape != null) {
+            System.out.println(abstractShape.toString());
+        }
+
     }
 }
