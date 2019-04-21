@@ -37,7 +37,7 @@ public class Service {
 
             }
         } else {
-            throw new ArrayIndexOutOfBoundsException("Вы не ввели аргументы командной строки");
+            throw new ValueIsNullException("Вы не ввели аргументы командной строки");
         }
     }
 }

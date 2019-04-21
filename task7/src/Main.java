@@ -24,19 +24,17 @@ public class Main {
             case "-r":
                 try {
                     abstractShape = new Rectangle(service.checkPositiveValue(args[1]), service.checkPositiveValue(args[2]));
-                    break;
                 } catch (ValueIsNotReadyException | ValueIsNullException ex) {
                     System.out.println(ex.getMessage());
-                    System.exit(1);
                 }
+                break;
             case "-c":
                 try {
                     abstractShape = new Circle(service.checkPositiveValue(args[1]));
-                    break;
                 } catch (ValueIsNotReadyException | ValueIsNullException ex) {
                     System.out.println(ex.getMessage());
-                    System.exit(1);
                 }
+                break;
             case "-h":
                 Help.getStrInfo();
                 break;
