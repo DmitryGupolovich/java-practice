@@ -14,7 +14,7 @@ public class Main {
         Service service = new Service();
         try {
             service.checkNullValue(args);
-        } catch (ArrayIndexOutOfBoundsException ex) {
+        } catch (ValueIsNullException ex) {
             System.out.println(ex.getMessage());
             System.exit(1);
         }
@@ -27,6 +27,7 @@ public class Main {
                     break;
                 } catch (ValueIsNotReadyException | ValueIsNullException ex) {
                     System.out.println(ex.getMessage());
+                    System.exit(1);
                 }
             case "-c":
                 try {
@@ -34,6 +35,7 @@ public class Main {
                     break;
                 } catch (ValueIsNotReadyException | ValueIsNullException ex) {
                     System.out.println(ex.getMessage());
+                    System.exit(1);
                 }
             case "-h":
                 Help.getStrInfo();
