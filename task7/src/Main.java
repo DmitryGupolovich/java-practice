@@ -16,7 +16,7 @@ public class Main {
             service.checkNullValue(args);
         } catch (ValueIsNullException ex) {
             System.out.println(ex.getMessage());
-            System.exit(1);
+            return;
         }
 
         AbstractShape abstractShape = null;
