@@ -8,7 +8,8 @@ public class QueueImpl<T> implements IQueue<T> {
     private int size;
     private Node first, last;
 
-    private class Node {
+
+    public class Node {
         T item;
         Node next;
     }
@@ -32,7 +33,6 @@ public class QueueImpl<T> implements IQueue<T> {
     public boolean isEmpty() {
         return (size == 0);
     }
-
 
     public T peek() { //посмотреть, но НЕ удалять, начало очереди. Если очередь пустая должен возвращаться null;
         if (isEmpty()) throw new NoSuchElementException("Очередь пустая");
@@ -63,14 +63,22 @@ public class QueueImpl<T> implements IQueue<T> {
         size++;
     }
 
-   public int indexOf(Predicate<T> x) {
+    public T findIndex(Predicate<T> x, Node node, int index) {
+        if (node == null)
+            return null;
+        if (x.test(node.item))
+            return node.item;
 
+        return findIndex(x, node.next, index++);
+    }
 
-        return 0;
+    public T indexOf(Predicate<T> x) {
+
+        return findIndex(x,first,0);
     }
 
     public void addAll(QueueImpl<T> other) {
-        while (!other.isEmpty()){
+        while (!other.isEmpty()) {
             add(other.pop());
         }
     }
