@@ -17,9 +17,9 @@ public class Main {
 
         queue.addAll(queue2);
 
-        String indexOf = queue.indexOf(new Predicate<String>() {
+        int indexOf = queue.indexOf(new Predicate<String>() {
             public boolean test(String searchFor) {
-                if (searchFor.contains("lol"))
+                if (searchFor.contains("Third"))
                 return true;
                 return false;
             }

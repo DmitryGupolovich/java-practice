@@ -63,16 +63,16 @@ public class QueueImpl<T> implements IQueue<T> {
         size++;
     }
 
-    public T findIndex(Predicate<T> x, Node node, int index) {
+    public int findIndex(Predicate<T> x, Node node, int index) {
         if (node == null)
-            return null;
+            return -1;
         if (x.test(node.item))
-            return node.item;
+            return index;
 
         return findIndex(x, node.next, index++);
     }
 
-    public T indexOf(Predicate<T> x) {
+    public int indexOf(Predicate<T> x) {
 
         return findIndex(x,first,0);
     }
