@@ -19,7 +19,7 @@ public class Main {
 
         int indexOf = queue.indexOf(new Predicate<String>() {
             public boolean test(String searchFor) {
-                if (searchFor.contains("Third"))
+                if (searchFor.contains("Second"))
                 return true;
                 return false;
             }
