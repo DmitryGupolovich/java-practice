@@ -19,11 +19,12 @@ public class Main {
 
         int indexOf = queue.indexOf(new Predicate<String>() {
             public boolean test(String searchFor) {
-                if (searchFor.contains("Second"))
+                if (searchFor.contains("2Second"))
                 return true;
                 return false;
             }
         });
+
         System.out.println(indexOf);
         System.out.println("---------------------------");
 
@@ -33,12 +34,6 @@ public class Main {
             System.out.print(" ");
         }
 
-
-
-
         System.out.println("\nafter pop "+queue.size());
-
-
     }
-
 }

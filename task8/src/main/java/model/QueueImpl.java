@@ -51,7 +51,6 @@ public class QueueImpl<T> implements IQueue<T> {
         return item;
     }
 
-
     public void add(T elem) {
         Node oldLast = last;
         last = new Node();
