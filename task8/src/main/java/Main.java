@@ -18,6 +18,7 @@ public class Main {
         queue.addAll(queue2);
 
         int indexOf = queue.indexOf(new Predicate<String>() {
+           @Override
             public boolean test(String searchFor) {
                 if (searchFor.contains("2Second"))
                 return true;
@@ -27,6 +28,17 @@ public class Main {
 
         System.out.println(indexOf);
         System.out.println("---------------------------");
+
+        int findIndexx = queue.findWithLoop(new Predicate<String>() {
+            @Override
+            public boolean test(String searchFor) {
+                if (searchFor.contains("2Second"))
+                    return true;
+                return false;
+            }
+        });
+
+        System.out.println(findIndexx);
 
         while (!queue.isEmpty()){
             String str = queue.pop();

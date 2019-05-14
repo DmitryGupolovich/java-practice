@@ -20,12 +20,6 @@ public class QueueImpl<T> implements IQueue<T> {
         this.size = 0;
     }
 
-    public QueueImpl(int size) {
-        first = null;
-        last = null;
-        this.size = size;
-    }
-
     public int size() {
         return size;
     }
@@ -71,9 +65,23 @@ public class QueueImpl<T> implements IQueue<T> {
         return findIndex(x, node.next, ++index);
     }
 
+    public int findWithLoop(Predicate<T> x) {
+        int index = -1;
+        Node node = first;
+        for (int i = 0; i < size()-1; i++) {
+            if (x.test(node.item)) {
+                index = i;
+                break;
+            }
+            else
+               node = node.next;
+        }
+        return index;
+    }
+
     public int indexOf(Predicate<T> x) {
 
-        return findIndex(x,first,0);
+        return findIndex(x, first, 0);
     }
 
     public void addAll(QueueImpl<T> other) {
