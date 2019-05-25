@@ -5,12 +5,12 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        QueueImpl<String> queue = new QueueImpl<String>();
+        QueueImpl<String> queue = new QueueImpl<>();
         queue.add("First");
         queue.add("Second");
         queue.add("Third");
 
-        QueueImpl<String> queue2 = new QueueImpl<String>();
+        QueueImpl<String> queue2 = new QueueImpl<>();
         queue2.add("2First");
         queue2.add("2Second");
         queue2.add("2Third");
@@ -20,7 +20,7 @@ public class Main {
         int indexOf = queue.indexOf(new Predicate<String>() {
            @Override
             public boolean test(String searchFor) {
-                if (searchFor.contains("2Second"))
+                if (searchFor.contains("2Thirddddd"))
                 return true;
                 return false;
             }
@@ -32,20 +32,13 @@ public class Main {
         int findIndexx = queue.findWithLoop(new Predicate<String>() {
             @Override
             public boolean test(String searchFor) {
-                if (searchFor.contains("2Second"))
+                if (searchFor.contains("2Third"))
                     return true;
                 return false;
             }
         });
-
         System.out.println(findIndexx);
 
-        while (!queue.isEmpty()){
-            String str = queue.pop();
-            System.out.print(str);
-            System.out.print(" ");
-        }
-
-        System.out.println("\nafter pop "+queue.size());
+        queue.showAll();
     }
 }

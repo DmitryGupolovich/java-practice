@@ -1,6 +1,5 @@
 package model;
 
-import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 public class QueueImpl<T> implements IQueue<T> {
@@ -20,28 +19,25 @@ public class QueueImpl<T> implements IQueue<T> {
         this.size = 0;
     }
 
-    public int size() {
-        return size;
-    }
-
-    public boolean isEmpty() {
+    private boolean isEmpty() {
         return (size == 0);
     }
 
     public T peek() { //посмотреть, но НЕ удалять, начало очереди. Если очередь пустая должен возвращаться null;
-        if (isEmpty()) throw new NoSuchElementException("Очередь пустая");
-        //return null;
+        if (isEmpty()) return null;
         return first.item;
     }
 
 
     public T pop() { //посмотреть и удалить начало очереди. Если очередь пустая должен возвращаться null;
-        if (isEmpty()) throw new NoSuchElementException("Очередь пустая");
+        if (isEmpty()) return null;
         T item = first.item;
         first = first.next;
         size--;
-        if (isEmpty())
+        if (isEmpty()) {
+            first = null;
             last = null;
+        }
         return item;
     }
 
@@ -66,17 +62,14 @@ public class QueueImpl<T> implements IQueue<T> {
     }
 
     public int findWithLoop(Predicate<T> x) {
-        int index = -1;
         Node node = first;
-        for (int i = 0; i < size()-1; i++) {
+        for (int i = 0; i < size; i++) {
             if (x.test(node.item)) {
-                index = i;
-                break;
-            }
-            else
-               node = node.next;
+                return i;
+            } else
+                node = node.next;
         }
-        return index;
+        return -1;
     }
 
     public int indexOf(Predicate<T> x) {
@@ -89,4 +82,13 @@ public class QueueImpl<T> implements IQueue<T> {
             add(other.pop());
         }
     }
+
+    public void showAll() {
+        while (!isEmpty()) {
+            String str = (String) pop();
+            System.out.print(str);
+            System.out.print(" ");
+        }
+    }
+
 }
