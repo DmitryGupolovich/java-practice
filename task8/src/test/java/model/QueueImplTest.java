@@ -12,43 +12,52 @@ import java.util.function.Predicate;
  */
 public class QueueImplTest {
 
-    private QueueImpl<String> queue = new QueueImpl<>();
+    private QueueImpl<String> queue;
+    private QueueImpl<String> other;
+    private int size;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         queue = new QueueImpl<>();
         queue.add("Test1");
         queue.add("Test2");
         queue.add("goodQueue");
+        size = 3;
+
+        other = new QueueImpl<>();
+        other.add("otherTest1");
+        other.add("otherTest2");
+
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         queue = null;
+        other = null;
     }
 
     @Test
-    public void testPeek() throws Exception {
+    public void testPeek() {
         String message = "hello";
         queue.add(message);
-        int size = queue.size();
+        size++;
         Assert.assertEquals(queue.peek(), message);
-        Assert.assertEquals(queue.size(), size);
+        Assert.assertEquals(3, size);
     }
 
     @Test
-    public void testPop() throws Exception {
+    public void testPop() {
         Assert.assertNull("Pop в пустой очереди возвращает null", queue.pop());
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testAdd() {
         queue.add("MyTest");
         Assert.assertEquals("MyTest", queue.pop());
     }
 
     @Test
-    public void testIndexOf() throws Exception {
+    public void testIndexOf() {
         String whatFind = "whatFind";
         Assert.assertEquals(2, queue.indexOf(new Predicate<String>() {
             @Override
@@ -61,8 +70,16 @@ public class QueueImplTest {
     }
 
     @Test
-    public void testIsEmpty() throws Exception {
-        Assert.assertTrue(queue.isEmpty());
-        Assert.assertEquals(queue.size(), 0);
+    public void testIsEmpty() {
+        Assert.assertEquals(0, size);
+    }
+
+    @Test
+    public void addAll() {
+        for (int i = 0; i <2 ; i++) {
+            queue.add(other.pop());
+        }
+
+
     }
 }

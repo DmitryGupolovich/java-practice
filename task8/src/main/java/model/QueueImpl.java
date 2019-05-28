@@ -82,13 +82,4 @@ public class QueueImpl<T> implements IQueue<T> {
             add(other.pop());
         }
     }
-
-    public void showAll() {
-        while (!isEmpty()) {
-            String str = (String) pop();
-            System.out.print(str);
-            System.out.print(" ");
-        }
-    }
-
 }
