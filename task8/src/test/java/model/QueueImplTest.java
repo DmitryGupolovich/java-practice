@@ -25,8 +25,6 @@ public class QueueImplTest {
         size = 3;
 
         other = new QueueImpl<>();
-        other.add("otherTest1");
-        other.add("otherTest2");
 
     }
 
@@ -38,28 +36,29 @@ public class QueueImplTest {
 
     @Test
     public void testPeek() {
-        String message = "hello";
+        String message = "Test1";
         queue.add(message);
         size++;
         Assert.assertEquals(queue.peek(), message);
-        Assert.assertEquals(3, size);
+        Assert.assertEquals(4, size);
     }
 
     @Test
     public void testPop() {
-        Assert.assertNull("Pop в пустой очереди возвращает null", queue.pop());
+
+        Assert.assertNull("Pop в пустой очереди возвращает null", other.pop());
     }
 
     @Test
     public void testAdd() {
         queue.add("MyTest");
-        Assert.assertEquals("MyTest", queue.pop());
+        Assert.assertEquals("Test1", queue.pop());
     }
 
     @Test
     public void testIndexOf() {
         String whatFind = "whatFind";
-        Assert.assertEquals(2, queue.indexOf(new Predicate<String>() {
+        Assert.assertEquals(-1, queue.indexOf(new Predicate<String>() {
             @Override
             public boolean test(String searchFor) {
                 if (searchFor.contains(whatFind))
@@ -70,16 +69,14 @@ public class QueueImplTest {
     }
 
     @Test
-    public void testIsEmpty() {
-        Assert.assertEquals(0, size);
-    }
-
-    @Test
     public void addAll() {
+        other.add("otherTest1");
+        other.add("otherTest2");
+
         for (int i = 0; i <2 ; i++) {
             queue.add(other.pop());
         }
-
+        Assert.assertNotNull(queue);
 
     }
 }
