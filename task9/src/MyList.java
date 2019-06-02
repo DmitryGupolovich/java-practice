@@ -26,13 +26,10 @@ public class MyList {
         showInformation(System.nanoTime() - startTime, "insert");
     }
 
-    public void findIndex() {
-        int value = (int) (Math.random() * 2000000);
+    public void getValueByIndex() {
         long startTime = System.nanoTime();
         for (int i = 0; i < 100000; i++) {
-            if ((list.get(i)) == value) {
-                break;
-            }
+            list.get(i);
         }
         showInformation(System.nanoTime() - startTime, "search");
     }
@@ -42,7 +39,7 @@ public class MyList {
         String simpleName = list.getClass().getSimpleName();
         switch (whatPrint) {
             case "search": {
-                System.out.println("Время поиска " + simpleName + " составило " + finalTime + "мс.");
+                System.out.println("Время перебора " + simpleName + " составило " + finalTime + "мс.");
                 break;
             }
             case "insert": {
@@ -56,11 +53,11 @@ public class MyList {
     public static void main(String[] args) {
         MyList myList1 = new MyList(new ArrayList<>());
         myList1.addList();
-        myList1.findIndex();
+        myList1.getValueByIndex();
 
         MyList myList2 = new MyList(new LinkedList<>());
         myList2.addList();
-        myList2.findIndex();
+        myList2.getValueByIndex();
 
         System.gc();
 
