@@ -14,18 +14,11 @@ public class QueueImplTest {
 
     private QueueImpl<String> queue;
     private QueueImpl<String> other;
-    private int size;
 
     @Before
     public void setUp() {
         queue = new QueueImpl<>();
-        queue.add("Test1");
-        queue.add("Test2");
-        queue.add("goodQueue");
-        size = 3;
-
         other = new QueueImpl<>();
-
     }
 
     @After
@@ -38,26 +31,34 @@ public class QueueImplTest {
     public void testPeek() {
         String message = "Test1";
         queue.add(message);
-        size++;
         Assert.assertEquals(queue.peek(), message);
-        Assert.assertEquals(4, size);
     }
 
     @Test
     public void testPop() {
-
-        Assert.assertNull("Pop в пустой очереди возвращает null", other.pop());
-    }
-
-    @Test
-    public void testAdd() {
-        queue.add("MyTest");
-        Assert.assertEquals("Test1", queue.pop());
+        queue.add("testPop");
+        Assert.assertEquals("testPop", queue.pop());
     }
 
     @Test
     public void testIndexOf() {
         String whatFind = "whatFind";
+        queue.add(whatFind);
+        Assert.assertEquals(0, queue.indexOf(new Predicate<String>() {
+            @Override
+            public boolean test(String searchFor) {
+                if (searchFor.contains(whatFind))
+                    return true;
+                return false;
+            }
+        }));
+
+    }
+
+    @Test
+    public void testNotFoundIndexOf() {
+        String whatFind = "whatFind2";
+        queue.add("whatFind");
         Assert.assertEquals(-1, queue.indexOf(new Predicate<String>() {
             @Override
             public boolean test(String searchFor) {
@@ -66,17 +67,17 @@ public class QueueImplTest {
                 return false;
             }
         }));
-    }
 
+    }
     @Test
     public void addAll() {
         other.add("otherTest1");
         other.add("otherTest2");
 
-        for (int i = 0; i <2 ; i++) {
-            queue.add(other.pop());
-        }
+        queue.addAll(other);
         Assert.assertNotNull(queue);
+        Assert.assertEquals("otherTest1", queue.pop());
+        Assert.assertEquals("otherTest2", queue.pop());
 
     }
 }
