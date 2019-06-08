@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 
 class MyMap {
 
+    /*
+    * без метода compute хотел попробовать. Перерыл интернет и видимо не понимаю, почему нельзя сделать
+    * метод так, как сейчас у меня.
+    * Если не дойду мыслями то сделаю как писали на занятии, создавая свой собственный ArrayList.
+    * */
     public static <K,V> HashMap<V, Collection<K>> inverte(Map<? extends K,? extends V> map){
 
         HashMap<V, Collection<K>> output =
