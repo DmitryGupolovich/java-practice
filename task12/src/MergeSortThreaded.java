@@ -1,8 +1,11 @@
+package task12;
+
+import java.util.Arrays;
 import java.util.Random;
 
 public class MergeSortThreaded {
 
-    public static void runSort(int[] array, int countThread) throws InterruptedException {
+    private static void runSort(int[] array, int countThread) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
         MyThread[] t = new MyThread[countThread];
@@ -19,7 +22,7 @@ public class MergeSortThreaded {
         for (int i = 1; i < countThread; i++) {
             t[i].join();
             t[i].merge(array, 0,
-                    i * array.length / countThread -1,
+                    i * array.length / countThread - 1,
                     (i + 1) * array.length / countThread - 1); // мы должны передавать границы, с которых будем искать
         }
 
@@ -37,77 +40,9 @@ public class MergeSortThreaded {
             original[i] = rand.nextInt(10000000);
         }
         try {
-            runSort(original, 8);
+            runSort(original, 3);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-    }
-}
-
-class MyThread extends Thread {
-    private int[] internal;
-    private int low;
-    private int high;
-
-    public void mergeSort(int[] array, int low, int high) {
-        if (low < high) {
-
-            int middle = low + (high - low) / 2;
-
-            mergeSort(array, low, middle);
-            mergeSort(array, middle + 1, high);
-
-            merge(array, low, middle, high);
-        }
-    }
-
-    public void merge(int[] result, int low, int middle, int high) {
-
-        int l = middle - low + 1;
-        int r = high - middle;
-
-        int LeftArray[] = new int[l];
-        int RightArray[] = new int[r];
-
-        for (int i = 0; i < l; ++i)
-            LeftArray[i] = result[low + i];
-
-        for (int j = 0; j < r; ++j)
-            RightArray[j] = result[middle + 1 + j];
-
-        int i = 0, j = 0;
-        int k = low;
-        while (i < l && j < r) {
-            if (LeftArray[i] <= RightArray[j]) {
-                result[k] = LeftArray[i];
-                i++;
-            } else {
-                result[k] = RightArray[j];
-                j++;
-            }
-            k++;
-        }
-        while (i < l) {
-            result[k] = LeftArray[i];
-            i++;
-            k++;
-        }
-
-        while (j < r) {
-            result[k] = RightArray[j];
-            j++;
-            k++;
-        }
-    }
-
-    MyThread(int[] arr, int low, int high) {
-        this.internal = arr;
-        this.low = low;
-        this.high = high;
-    }
-
-    @Override
-    public void run() {
-        mergeSort(internal, low, high);
     }
 }
