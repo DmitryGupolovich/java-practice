@@ -7,7 +7,7 @@ import java.util.Random;
 /* Main application class, containing the Minesweeper solver logic */
 
 public final class Solver {
-	//
+  
     private static Random random = new Random();
     private static Game game;
 
